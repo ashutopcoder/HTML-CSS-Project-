@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Songs On JioSavan</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+    #navbar{
+        position: fixed;
+        z-index: 1;
+        width: 100%;
+        height: 65px;
+        display: flex;
+        background-color:#F6F6F6;
+        gap: 30px;
+        justify-content: space-between;
+    }
+    #image{
+        height: 40px;   
+        width: 130px;
+        margin-top: 12px;
+        padding-left: 10px;
+        
+    }
+    .navmenu{
+        margin-top: 22px;
+        font: 15px Lato, sans-serif;
+        padding: 0px 15px;
+    }
+    #searchbar{
+        width: 600px;
+        height: 40px;
+        border-radius: 30px;
+        margin-top: 12px;
+        border: none;
+        transition: 0.5s;
+        text-align: center;
+        border: 1px solid #eee;
+        outline: none;
+    }
+    #lang{
+        display: none;
+    }
+    .nav1,.nav2{
+        display: flex;
+    }
+    @media screen and (max-width:1300px) {
+        #searchbar{
+            display: none;
+        }
+    }
+    @media screen and (max-width:1010px) {
+        .nav1>h4,.nav2>h4{
+            display: none;
+        }
+        #lang{
+            display: flex;
+        }
+        .menu{
+            display: none;
+        }
+    }
+    #searchbar:hover{
+        width: 750px;
+        height: 50px;
+    }
+    .landing{
+        width: 100%;
+        display: inline-block;
+        background-color: #F6F6F6;
+        position: absolute;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .menu{
+        position: fixed;
+        float: left;
+        margin-left: 70px;
+        width: 100%;
+        padding: 25px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .menu>ul>a{
+        text-decoration: none;
+    }
+    .menu>ul>a>li{
+        color: #000;
+        list-style: none;
+        padding: 8px 0px;
+    }
+    .menu>ul>li{
+        color: #999;
+        list-style: none;
+        margin-top: 50px;
+        padding: 15px 0px;
+    }
+    .data{
+        float: right;
+        width: 75%;
+        padding: 50px;
+    }
+    #button{
+        border: 1px solid #258F8A;
+        background-color: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        color: #258F8A;
+        font-size: 15px;
+        margin-top: 10px;
+    }
+    #navbar{
+        border-bottom: 1px solid #ddd;
+    
+    }
+    .topmenu{
+        display: flex;
+        justify-content: space-between;
+    }
+    .tmenu>ul>li{
+        display: inline-block;
+        padding: 20px;
+    }
+    .tmenu>ul>li:hover{
+        border-bottom: 1px solid #777;
+    }
+    .but>button{
+        border: none;
+        font-size: 15px;
+        padding: 10px 20px;
+        background-color: #2BC4B3;
+        color: white;
+        border-radius: 30px;
+    }
+    .songhead{
+        font: 20px Lato,Sans-Serif;
+        padding: 15px;
+        margin-top: 20px;
+        font-weight:normal;
+    }
+    .boxstart{
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        grid-template-rows:repeat(2,1fr) ;
+        gap: 20px;
+        padding: 10px;
+    }
+    .boxes{
+        height: 170px;
+        width: 150px;
+    }
+    .img{
+        height: 140px;
+        width: 150px;
+        border-radius: 4px;
+    }
+    .imghead{
+        font: 13px Lato,sans-serif;
+        color: #3E3E3E;
+        text-align: center;
+        margin-top: 3px;
+    }
+    .topchart{
+        width: 60%;
+    }
+    #yayline{
+        text-align: center;
+    }
+    .secondboxstart{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows:repeat(2,1fr) ;
+        gap: 20px;
+        padding: 10px;    
+    }
+    .imghead2{
+        text-align: center;
+        font: 13px Lato,Sans-serif;
+        padding: 2px;
+        color: grey;
+    }
+    .boxstart2{
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        grid-template-rows:repeat(1,1fr) ;
+        gap: 20px;
+        padding: 10px;
+    }
+    .radio{
+        height: 140px;
+        width: 150px;
+        border-radius: 100px;
+    }
+    .footer{
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        grid-template-rows:repeat(1,1fr) ;
+        gap: 20px;      
+        padding: 25px;
+        
+    }
+    .topalbum{
+        margin-bottom: 100px;
+    }
+    .cont{
+        width: 160px;
+        padding: 10px;
+        background-color: #F6F6F6;
+    }
+    .fheading{
+        font: 13px Lato,Sans-Serif;
+        color: #3E3E3E;
+        margin-bottom: 15px;
+        font-weight: bolder;
+    }
+    .ffheading{
+        font: 14px Lato Sans-Serif;
+        color: #3E3E3E;
+
+    }
+    .fmenu{
+        display: flex;
+    }
+    .ffmenu{
+        font: 13px Lato,Sans-Serif;
+        padding: 30px;
+
+    }
+    
+</style>
+</head>
+<body>
+    <div class="main">
+        <!-- Navbar Start From Here -->
+        <div id="navbar">
+            <div class="nav1">
+                <img id="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/JioSaavn_Logo.svg/1024px-JioSaavn_Logo.svg.png" alt="Jio Savan">
+                <h4 class="navmenu">Music</h4>
+                <h4 class="navmenu">Podcasts</h4>
+                <h4 class="navmenu">Go Pro</h4>
+            </div>
+            <div class="nav3">
+                <input id="searchbar" type="text"  placeholder= " Search">
+            </div>
+            <div class="nav2">
+                <h4 class="navmenu">Music Languages <i class="fa-solid fa-chevron-down"></i></h4>
+                <h4 class="navmenu">Log In</h4>
+                <h4 class="navmenu">Sign Up</h4>
+                <h4 id="lang" class="navmenu">Languages <i class="fa-solid fa-chevron-down"></i></h4>
+            </div>  
+        </div>
+        <!-- Navbar End Here -->
+        <div class="landing">
+            <div class="menu">
+                <ul>
+                    <li>BROWSE</li>
+                    <a href="#"><li>New Releases</li></a>
+                    <a href="#"><li>Top Charts</li></a>
+                    <a href="#"><li>Top Playlists</li></a>
+                    <a href="#"><li>Podcasts</li></a>
+                    <a href="#"><li>Top Artists</li></a>
+                    <a href="#"><li>Radio</li></a>
+                </ul>
+                <ul>
+                    <li>LIBRARY</li>
+                    <a href="#"><li>History</li></a>
+                    <a href="#"><li>Linked Songs</li></a>
+                    <a href="#"><li>Albums</li></a>
+                    <a href="#"><li>Podcasts</li></a>
+                    <a href="#"><li>Artists</li></a>
+                </ul>
+                <button id="button">+ New Playlist</button>
+            </div>
+            <div class="data">
+                <div class="topmenu">
+                    <div class="tmenu">
+                        
+                    </div>
+                    <div class="but"></div>
+                </div>
+                <!-- Box start here -->
+                <div class="Trending">
+                    <h4 class="songhead">Trending Now</h4>
+                <div class="boxstart">
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/logo/MTPShriGaneshDevahindiJaiShreeGanesha_20210907171234.jpg" alt="image">
+                    <p class="imghead">Shri Ganesh Deva</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/196/ANIMAL-Deluxe-Edition-Album-Hindi-2024-20240129171041-500x500.jpg" alt="image">
+                    <p class="imghead">Animal(Delexe Editi..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/475/Thank-You-God-Hindi-2024-20240401131818-500x500.jpg" alt="image">
+                    <p class="imghead">Thank You God</p>
+                </div>
+                <div class="boxes">
+                    <img  class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHsGjJARyjiTKW2Bl6BrJJRqXozRxcjyJ_H7a7O90QU-qORL76CPGjCdha4w&s" alt="image">
+                    <p class="imghead">Moh Na Lage</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXvyXoLkZ8rVYmg3BEL0igMFF7NI9CZx8PAP5i4oqWcUA__K1efkbtrukp&s" alt="image">
+                    <p class="imghead">Yodha</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTsn76P9xiRbiL48bmQPaOpNI11vzWxo4lU6mKrEjGAxXVLZ-MndZCeP_Bpg&s" alt="image">
+                    <p class="imghead">Love Story Natthi</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/556/Love-Mashup-2024-Hindi-2024-20240329201004-500x500.jpg" alt="image">
+                    <p class="imghead">Love Mashup</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLfFbjKJ6hy4Q6_wB9YPPsF2CZVycxQgizOB0cVoz-HCzXUM4fKkS7n-dDiw&s" alt="image">
+                    <p class="imghead">Kalyani Tera Hoon Mai..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdbaGdYjtTHh4CBl6J_YJkxQDELATI-9nqyA&s" alt="image">
+                    <p class="imghead">Rang Maar De Holi Hai..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT99vACEG3ldQVljvthCUba4X4LXujQXXKIZA&s" alt="image">
+                    <p class="imghead">Swatantrya Veer Sava..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/636/Woh-Bhi-Din-The-Hindi-2024-20240328145551-500x500.jpg" alt="image">
+                    <p class="imghead">Wo Bhi Din The</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/226/Ameena-Title-Song-From-Ameena-Hindi-2024-20240320151510-500x500.jpg" alt="image">
+                    <p class="imghead">Ameena Title Song(fr..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/150/Tu-Ban-Ja-Gabru-From-Gabru-Gang-Hindi-2024-20240320174414-500x500.jpg" alt="image">
+                    <p class="imghead">Tu Ban Ja gabru(From..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/436/Husn-Hindi-2023-20231129054140-500x500.jpg">
+                    <p class="imghead">Husn</p>
+                </div>
+            </div>
+        </div>
+        <div class="topchart">
+            <h4 class="songhead">Top Chart</h4>
+            <div class="secondboxstart">
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/Hindi-IndiaSuperhitsTop50_20240315031623.jpg?bch=1711685386" alt="images">
+                    <p class="imghead">Hindi:Inia Superhits..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/charts_TrendingToday_134351_20230826113717.jpg?bch=1712192402" alt="images">
+                    <p class="imghead">Trending Today</p>
+                    <p class="imghead2">Jiosaavn</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/charts_CHARTS_SAAVN_hindi_2000s_139784_20230711094322.jpg?bch=1712160003" alt="images">
+                    <p class="imghead">Hindi 2000s</p>
+                    <p class="imghead2">JioSaavn</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="http://c.saavncdn.com/editorial/charts_CHARTS_SAAVN_hindi_1980s_139462_20230711095004.jpg?bch=1712160003" alt="images">
+                    <p class="imghead">Hindi 1980s</p>
+                    <p class="imghead2">JioSaavn</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/IndiaSuperhitsTop50_20240308022148.jpg?bch=1711687283" alt="images">
+                    <p class="imghead">Indian Superhits Top 50</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/charts_RomanticTop40_167985_20220311173413.jpg?bch=1712192402" alt="images">
+                    <p class="imghead">Romentic Top 40</p>
+                    <p class="imghead2">JioSaavn</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/charts_CHARTS_SAAVN_hindi_1990s_175982_20230711094900.jpg?bch=1712160003" alt="images">
+                    <p class="imghead">Hindi 1990s</p>
+                    <p class="imghead2">JioSaavn</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/charts_Hindi1970s_180599_20230713045713.jpg?bch=1712160003" alt="images">
+                    <p class="imghead">Hindi 1970s</p>
+                    <p class="imghead2">JioSaavn</p>
+                </div>
+            </div>
+        </div>
+        <div class="Trending">
+            <h4 class="songhead">New Releases</h4>
+        <div class="boxstart">
+        <div class="boxes">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ77hWYXO0K5CS8yp1CFab3SUj6ggTjd9CF1Q&s" alt="image">
+            <p class="imghead">Bade Miyan Chota Miyan</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhidlzORXd5IVC9LXI49PXTLGLpKjbfctt8w&s" alt="image">
+            <p class="imghead">Crew</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7SZkWRqxJ8B41J7P3mzCWcL-LOI-bh9KwG-Btj0xBk1ILtD0FLTzofpWS4w&s" alt="image">
+            <p class="imghead">Jazbatti Hai Dil</p>
+        </div>
+        <div class="boxes">
+            <img  class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHsGjJARyjiTKW2Bl6BrJJRqXozRxcjyJ_H7a7O90QU-qORL76CPGjCdha4w&s" alt="image">
+            <p class="imghead">Moh Na Lage</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXvyXoLkZ8rVYmg3BEL0igMFF7NI9CZx8PAP5i4oqWcUA__K1efkbtrukp&s" alt="image">
+            <p class="imghead">Yodha</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTsn76P9xiRbiL48bmQPaOpNI11vzWxo4lU6mKrEjGAxXVLZ-MndZCeP_Bpg&s" alt="image">
+            <p class="imghead">Love Story Natthi</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMUlHgpSMHOqrbqWsG8YDdxndj9y0-5LtpEO4oKRNVEfrrCubAsVgn&usqp=CAE&s" alt="image">
+            <p class="imghead">Madgaon Express</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLfFbjKJ6hy4Q6_wB9YPPsF2CZVycxQgizOB0cVoz-HCzXUM4fKkS7n-dDiw&s" alt="image">
+            <p class="imghead">Kalyani Tera Hoon Mai..</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdbaGdYjtTHh4CBl6J_YJkxQDELATI-9nqyA&s" alt="image">
+            <p class="imghead">Rang Maar De Holi Hai..</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT99vACEG3ldQVljvthCUba4X4LXujQXXKIZA&s" alt="image">
+            <p class="imghead">Swatantrya Veer Sava..</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/636/Woh-Bhi-Din-The-Hindi-2024-20240328145551-500x500.jpg" alt="image">
+            <p class="imghead">Wo Bhi Din The</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/226/Ameena-Title-Song-From-Ameena-Hindi-2024-20240320151510-500x500.jpg" alt="image">
+            <p class="imghead">Ameena Title Song(fr..</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/150/Tu-Ban-Ja-Gabru-From-Gabru-Gang-Hindi-2024-20240320174414-500x500.jpg" alt="image">
+            <p class="imghead">Tu Ban Ja gabru(From..</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/063/Har-Karwate-From-Good-Morning-Sunshine-Hindi-2024-20240326171753-500x500.jpg" alt="image">
+            <p class="imghead">Har Karwate (From "G..</p>
+        </div>
+    </div>
+</div> 
+    <div class="picks">
+        <h4 class="songhead">Editorial Picks</h4>
+    <div class="boxstart2">
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/editorial/MostSearchedSongsHindi_20240318090131.jpg?bch=1711951329" alt="image">
+            <p class="imghead">Most Searched Songs -..</p>
+            <p class="imghead2">65k Followers</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/editorial/RomanticHits2023Hindi_20231211051437.jpg?bch=1702273508" alt="image">
+            <p class="imghead">Romentic Hits 2023 -..</p>
+            <p class="imghead2">12.6k Followers</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/editorial/BestOfDanceHindi_20231026182028.jpg?bch=1711961184" alt="image">
+            <p class="imghead">Best Of Dance - Hindi</p>
+            <p class="imghead2">64.6k Followers</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/editorial/JhakaasRemakes_20240312053740.jpg" alt="image">
+            <p class="imghead">Jhakaas Remakes</p>
+            <p class="imghead2">358.9k Followers</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/editorial/MenInIndipop-NewHits_20231013190219.jpg?bch=1711614725" alt="image">
+            <p class="imghead">Men In Indipop : New ...</p>
+            <p class="imghead2">19.8k Followers</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/editorial/BestOf2000sHindi_20230901051004.jpg?bch=1711960861" alt="image">
+            <p class="imghead">Best Of 2000s - hindi</p>
+            <p class="imghead2">70.9k Followers</p>
+        </div>
+        <div class="boxes">
+            <img class="img" src="https://c.saavncdn.com/editorial/ChillMaaro-LoFiMix_20220908174414.jpg?bch=1711102732" alt="image">
+            <p class="imghead">Chill Maaro: Lo-Fi Mix</p>
+            <p class="imghead2">4.1k Followers</p>
+        </div>
+    </div>
+    </div>    
+    <div class="prodcasts">
+        <h4 class="songhead">Trending Prodcasts</h4>
+        <div class="boxstart">
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/DHADKANE-MERI-SUN-20231008103605-500x500.jpg" alt="image">
+                <p class="imghead">Dhadkane Meri Sun</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Shri-Krishna-Amritvani-20211001160841-500x500.jpg" alt="image">
+                <p class="imghead">Shri Krishna Amritvani</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Hanuman-Chalisa-Explanation-20221104123422-500x500.jpg" alt="image">
+                <p class="imghead">Hanuman Chalisa</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Bhagvat-Gita-quotes-Mahabharat-Shri-Krishna-quotes-20230722081111-500x500.jpg" alt="image">
+                <p class="imghead">Bhagvat Geeta Quotes</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Jai-Bajrangi-20240229114518-500x500.jpg" alt="image">
+                <p class="imghead">Jai Bajrangi</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Yeh-Hain-Chahtein-Author-Vandana-Sharma-20221021065541-500x500.jpg" alt="image">
+                <p class="imghead">Yeh Hain Chahtein</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Adhyatmik-Kathayein-20240311160652-500x500.jpg" alt="image">
+                <p class="imghead">Adhiyatmik Kathayien</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Ramayan-Hindi-20230806123927-500x500.jpg" alt="image">
+                <p class="imghead">Ramayan Hindi</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Krishna-The-Supreme-Soul-20230131115638-500x500.jpg" alt="image">
+                <p class="imghead">Krishna The Supreme...</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/-20240301073028-500x500.jpg" alt="image">
+                <p class="imghead">चाणक्य नीति</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Ramayan-20230402054719-500x500.jpg" alt="image">
+                <p class="imghead">रामायण</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Vivekananda-Ki-Vaani-20230228131425-500x500.jpg" alt="image">
+                <p class="imghead">Vivekananda Ki Vaani</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Yakshini-Author-Anand-Usha-Borkar-20221020131314-500x500.jpg" alt="image">
+                <p class="imghead">Yakshini | यक्षिणी | Aut...</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="http://c.sop.saavncdn.com/Bal-Krishan-Leela-20221229195518-500x500.jpg" alt="image">
+                <p class="imghead">Bal Krishna Leela</p>
+            </div>
+        </div>
+    </div>
+    <div class="station">
+        <h4 class="songhead">Radio Stations</h4>
+        <div class="boxstart2">
+            <div class="boxes">
+                <img class="radio" src="https://www.ibdmaphouse.com/cdn/shop/products/Golden-Bal-Geet-Cover-2-up-09-06-2014.jpg?v=1604302365" alt="image">
+                <p class="imghead">Baal Geet</p>
+                <p class="imghead2">Hindi Radio</p>
+            </div>
+            <div class="boxes">
+                <img class="radio" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDuKQNIlwOlvmc_6LaOkhlPNMIN9_dUNrvPg&s" alt="image">
+                <p class="imghead">Bakhti Rachna</p>
+                <p class="imghead2">Hindi Radio</p>
+            </div>
+            <div class="boxes">
+                <img class="radio" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmikhzvPVqT5bhiwXPh0w0iOHgnD05nvbUwA&s" alt="image">
+                <p class="imghead">Dukhi Mann</p>
+                <p class="imghead2">Hindi Radio</p>
+            </div>
+            <div class="boxes">
+                <img class="radio" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQif2oV16Lyegun-v3ViHPzhgNktHm9EwLBE8jWWRNjdQ&s" alt="image">
+                <p class="imghead">Ganesh Deva</p>
+                <p class="imghead2">Hindi Radio</p>
+            </div>
+            <div class="boxes">
+                <img class="radio" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRtDcDuDvCLM74xfTiAvqJlIpotEGCykdicQ&s" alt="image">
+                <p class="imghead">Remix Dhamaal</p>
+                <p class="imghead2">Hindi Radio</p>
+            </div>
+            <div class="boxes">
+                <img class="radio" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD0w-svoGFw6VYj4Uht2hhFigS1id3xaPV_g&s" alt="image">
+                <p class="imghead">Desi Hip Hop</p>
+                <p class="imghead2">Hindi Radio</p>
+            </div>
+            <div class="boxes">
+                <img class="radio" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6TfTwumOZnOgDcv5O6K5JeQuGTbq-zZCqqA&s" alt="image">
+                <p class="imghead">Hindi Musical Cover</p>
+                <p class="imghead2">Hindi Radio</p>
+            </div>
+        </div>
+        <div class="artist">
+            <h4 class="songhead">Recomanded Artist Station</h4>
+            <div class="boxstart2">
+                <div class="boxes">
+                    <img class="radio" src="https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_500x500.jpg" alt="images">
+                    <p class="imghead">Arjit singh</p>
+                    <p class="imghead2">Artist Radio</p>
+                </div>
+                <div class="boxes">
+                    <img class="radio" src="https://c.saavncdn.com/artists/Sidhu_Moose_Wala_20190627113332_500x500.jpg" alt="images">
+                    <p class="imghead">Sidhu_Moose_Wala</p>
+                    <p class="imghead2">Artist Radio</p>
+                </div>
+                <div class="boxes">
+                    <img class="radio" src="https://c.saavncdn.com/artists/Hansraj_Raghuwanshi_001_20220916054832_500x500.jpg" alt="images">
+                    <p class="imghead">Hansraj Raghuvanshi</p>
+                    <p class="imghead2">Artist Radio</p>
+                </div>
+                <div class="boxes">
+                    <img class="radio" src="https://c.saavncdn.com/artists/Karan_Aujla_20190327091154_500x500.jpg" alt="images">
+                    <p class="imghead">Karan Aujla</p>
+                    <p class="imghead2">Artist Radio</p>
+                </div>
+                <div class="boxes">
+                    <img class="radio" src="https://c.saavncdn.com/artists/Diljit_Dosanjh_005_20231025073054_500x500.jpg" alt="images">
+                    <p class="imghead">Diljit Dosanjh</p>
+                    <p class="imghead2">Artist Radio</p>
+                </div>
+                <div class="boxes">
+                    <img class="radio" src="https://c.saavncdn.com/artists/B_Praak_001_20191118112005_500x500.jpg" alt="images">
+                    <p class="imghead">B Praak</p>
+                    <p class="imghead2">Artist Radio</p>
+                </div>
+                <div class="boxes">
+                    <img class="radio" src="https://c.saavncdn.com/artists/Satinder_Sartaaj_500x500.jpg" alt="images">
+                    <p class="imghead">Satinder Sartaaj</p>
+                    <p class="imghead2">Artist Radio</p>
+                </div>
+            </div>
+        </div>
+        <div class="shimla">
+            <h4 class="songhead">What's Hot In Shimla</h4>
+            <div class="boxstart2">
+                <div class="boxes">
+                    <img class="img" src="http://c.saavncdn.com/editorial/logo/SadRomantic_20200717155840.jpg?bch=1709704348" alt="image">
+                    <p class="imghead">Sad Romentic</p>
+                    <p class="imghead2">B Praak,Jass Manak, a..</p>
+                </div>
+                <div class="boxes">
+                    <img class="radio" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE-BK3AtJTGVC_3dw4F9JYJ6NeNX0vBJhcKQ&s" alt="image">
+                    <h4 class="imghead">Backstreet Boys</h4>
+                </div>
+                
+                <div class="boxes">
+                    <img class="radio" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVvcJk-RQWzICYJRscqwN9V78mrJMdMBPBaQ&s" alt="image">
+                    <h4 class="imghead">Kumar Sanu</h4>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/DecadeOf2010s-RomancePunjabi_20240229174232.jpg" alt="image">
+                    <p class="imghead">Dedicate Of 2010s:Ro...</p>
+                    <p class="imghead2">Ammy Virk,Mannat N..</p>
+                </div>
+                <div class="boxes">
+                    <img class="radio" src="https://c.saavncdn.com/artists/Diljit_Dosanjh_005_20231025073054_500x500.jpg" alt="images">
+                    <p class="imghead">Diljit Dosanjh</p>
+               </div>
+               <div class="boxes">
+                <img class="img" src="https://c.saavncdn.com/538/Making-Memories-English-2023-20230818075015-500x500.jpg" alt="image">
+                <p class="imghead">Softly</p>
+            </div>
+            <div class="boxes">
+                <img class="img" src="https://c.saavncdn.com/editorial/PunjabiHitSongs_20240220125223.jpg?bch=1709704704" alt="image">
+                <p class="imghead">Punjabi Hits Songs</p>
+                <p class="imghead2">Gippy Grewal,Hunny B...</p>
+            </div>
+            </div>
+        </div>
+        <div class="fresh">
+            <h4 class="songhead">Fresh Hits</h4>
+            <div class="boxstart2">
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/TaazaTunes_20240329045548.jpg?bch=1712318411" alt="image">
+                    <p class="imghead">Taaza Tunes</p>
+                    <p class="imghead2">Just Updated</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/DumdaarHits_20240403084555.jpg?bch=1712135783" alt="image">
+                    <p class="imghead">Damdaar Hits</p>
+                    <p class="imghead2">Just Updated</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/NachLe_20240226104326.jpg?bch=1712123551" alt="image">
+                    <p class="imghead">Nach Le</p>
+                    <p class="imghead2">Just Updated</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/PopMeinTop_20240316132446.jpg?bch=1712123596" alt="image">
+                    <p class="imghead">Pop Me Top</p>
+                    <p class="imghead2">Rajat Nagpal,Sherya G...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/HindiViralHits_20240131053244.jpg" alt="image">
+                    <p class="imghead">Hindi Viral Hits</p>
+                    <p class="imghead2">Pallavi,S.P.Balasubram...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/TereBinaBreakUpSongs_20230307103740.jpg?bch=1712216349" alt="image">
+                    <p class="imghead">Tera Bina</p>
+                    <p class="imghead2">Amitabh Bhattacharya...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/Ishqiyaan_20240229161011.jpg?bch=1712123484" alt="image">
+                    <p class="imghead">Ishqiyaan</p>
+                    <p class="imghead2">Just Updated</p>
+                </div>
+            </div>
+        </div>
+        <div class="top">
+            <h4 class="songhead">Top Genres & Moods</h4>
+            <div class="boxstart2">
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/JoshHiJosh_20230701032021.jpg?bch=1711961619" alt="">
+                    <p class="imghead">Josh Hi Josh</p>
+                    <p class="imghead2">Vishal Dadlani,Daler...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/TereBinaBreakUpSongs_20230307103740.jpg?bch=1712216349" alt="image">
+                    <p class="imghead">Best Of Romance-Hi...</p>
+                    <p class="imghead2">Amitabh Bhattacharya</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/OnlyKhushiyaan_20231117032829.jpg?bch=1711961617" alt="image">
+                    <p class="imghead">Only Kushiyaan</p>
+                    <p class="imghead2">Amaal Malik,Armaan...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/BestOfSadSongsHindi_20220922012526.jpg?bch=1711956265" alt="image">
+                    <p class="imghead">Best Of Sad Songs - Hi...</p>
+                    <p class="imghead2">Sachet Tondon,Arjit Si...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/IndipopSadSongs_20230526175619.jpg?bch=1712216507" alt="image">
+                    <p class="imghead">Indipop Sad Songs</p>
+                    <p class="imghead2">Jaani,Mohammad Faiz...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/BestOfRockHindi_20231005121959.jpg?bch=1712038085" alt="image">
+                    <p class="imghead">Best Of Rock - Hindi</p>
+                    <p class="imghead2">Ram Sampath , Farhan...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/logo/TimelessGhazals_20211215062059.jpg?bch=1711961194" alt="image">
+                    <p class="imghead">Timeless Ghazals</p>
+                    <p class="imghead2">Jagjit Singh, Chitra Sin...</p>
+                </div>
+            </div>
+        </div>
+        <div class="pickmood">
+            <h4 class="songhead">Pick Your Mood</h4>
+            <div class="boxstart2">
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/blob/tag_comb_mixes/bbdae4fa7330117c2f09d326665c3fd4_RomanticDuets_hindi.jpg" alt="image">
+                    <p class="imghead">Romentic Hits</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/blob/tag_comb_mixes/49b1ad96bba48747167a4ff326395826_SoulfulSufi_hindi.jpg" alt="image">
+                    <p class="imghead">Soulful Music</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/blob/tag_comb_mixes/8feccb1d5a34685a554fefc259691738_RowdyHipHopper_hindi.jpg" alt="image">
+                    <p class="imghead">Rouwdy Hip Hoper</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/blob/tag_comb_mixes/9f74c1077d46f155fd7bdfbe814406ab_PyaarKeSaathi_hindi.jpg" alt="image">
+                    <p class="imghead">Pyaar Ka Saathi</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/blob/tag_comb_mixes/94d753f35757e0b4eb5a00bf240b1abd_DeshPrem_hindi.jpg" alt="image">
+                    <p class="imghead">Desh Prem</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/blob/tag_comb_mixes/7684075b31b40837e669bc1b5aeec44b_SalaameIshq_hindi.jpg" alt="image">
+                    <p class="imghead">Salam-E-Ishq</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/blob/tag_comb_mixes/fc75e71139831e161c1f7a626a7d67df_UnpluggedHits_hindi.jpg" alt="image">
+                    <p class="imghead">Unplugged Songs</p>
+                </div>
+            </div>
+        </div>
+        <div class="cricket">
+            <h4 class="songhead">Cricket Fever</h4>
+            <div class="boxstart2">
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/IndianPartyLeagueChennaiTop20Tamil_20240321150116.jpg?bch=1712188947" alt="image">
+                    <p class="imghead">Indian Party League -...</p>
+                    <p class="imghead2">Naveen,Rahul,Ranjeet,...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/IndianPartyLeagueKolkataTop20_Bengali_20240321150018.jpg?bch=1711035034" alt="image">
+                    <p class="imghead">Indian Party League -... </p>
+                    <p class="imghead2">Kunal Ganjawala,Neer...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/IndianPartyLeagueHyderabadTop20_20240321145359.jpg?bch=1712189014" alt="image">
+                    <p class="imghead">Indian Party League -...</p>
+                    <p class="imghead2">VUSE,Arjit Singh,Ku...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/IndianPartyLeagueLucknowTop20_20240321170817.jpg?bch=1712188968" alt="image">
+                    <p class="imghead">Indian Party League -...</p>
+                    <p class="imghead2">Badshah,Arjit Singh,k...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/IndianPartyLeaguePunjabTop20_20240321145846.jpg?bch=1711735257" alt="image">
+                    <p class="imghead">Indian Party League -...</p>
+                    <p class="imghead2">Cheema Y,Gur Sidhu,A...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/IndianPartyLeagueGujaratTop20_20240321145301.jpg?bch=1711713391" alt="image">
+                    <p class="imghead">Indian Party League...</p>
+                    <p class="imghead2">Arjit Singh,Kumaar,Sh...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/IndianPartyLeagueDelhiTop20_20240321145108.jpg?bch=1711735260" alt="image">
+                    <p class="imghead">Indian Party League...</p>
+                    <p class="imghead2">Amit Trivedi,Arjit Sing...</p>
+                </div>
+            </div>
+        </div>
+        <div class="best">
+            <h4 class="songhead">Best Of 90s</h4>
+            <div class="boxstart2">
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/logo/90sDuetsHindiSongs_20210120154331.jpg?bch=1711955097" alt="image">
+                    <p class="imghead">Best Of Duets: 90s</p>
+                    <p class="imghead2">Anuradha Paudwal,Ku...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/logo/DecadeOfHeroines1990s_20210824153137.jpg?bch=1711956430" alt="image">
+                    <p class="imghead">Decade Of Heroines</p>
+                    <p class="imghead2">Alka Yagnik,Udit Narya...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/AllDayShuffle90sHindi_20221202050456.jpg?bch=1711955057" alt="image">
+                    <p class="imghead">Best Of Sad Songs</p>
+                    <p class="imghead2">Anuradha Paudwal,Ku...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/90sRomanceHindi_20240229161443.jpg" alt="image">
+                    <p class="imghead">90s - Romentic</p>
+                    <p class="imghead2">Alka Yagnik,Udit Narya...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/90sDanceDhamaaka_20240229050348.jpg" alt="image">
+                    <p class="imghead">Dance Dhamaka</p>
+                    <p class="imghead2">Kavita Krishnamurthy</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/logo/DecadeOfHeroes1990s_20210824153143.jpg?bch=1711956253" alt="image">
+                    <p class="imghead">Dedicate Of Heros - 19..</p>
+                    <p class="imghead2">Anu Malik,Kumaar Saan..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/editorial/BestOf90sHindi_20230831101544.jpg?bch=1711955035" alt="image">
+                    <p class="imghead">Best Of 90s</p>
+                    <p class="imghead2">Alka Yagnik,Udit Narya...</p>
+                </div>
+            </div>
+        </div>
+        <div class="releases">
+            <h4 class="songhead">New Releases Pop - Hindi</h4>
+            <div class="boxstart">
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/283/Ae-Watan-Mere-Watan-Hindi-2024-20240308121003-500x500.jpg" alt="image">
+                    <p class="imghead">Ae Watan Mera Watan</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/621/Murder-Mubarak-Hindi-2024-20240322135411-500x500.jpg" alt="image">
+                    <p class="imghead">Murder Mubarak</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/283/The-Goat-Life-Aadujeevitham-Hindi-2024-20240318222602-500x500.jpg" alt="image">
+                    <p class="imghead">The Goat Life Aaduge..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/355/Aisa-Main-Shaitaan-From-Shaitaan-Hindi-2024-20240222052515-500x500.jpg" alt="image">
+                    <p class="imghead">Aisa Mai Shataan (Fr..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/878/Hille-Le-Jhakjhor-Duniya-From-Bastar-Original-Soundtrack-Hindi-2024-20240312223113-500x500.jpg" alt="image">
+                    <p class="imghead">Hille Le Jhakjhor Duni</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/678/Maa-Banne-Wali-Hoon-From-Dukaan-Hindi-2024-20240308145122-500x500.jpg" alt="image">
+                    <p class="imghead">Maa Banni Wali Hoon</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/218/Shaitaan-Theme-From-Shaitaan-Hindi-2024-20240307120243-500x500.jpg" alt="image">
+                    <p class="imghead">Shaitaan Theme (From..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/245/Dange-Hindi-2024-20240228201043-500x500.jpg" alt="image">
+                    <p class="imghead">Dange</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/676/Khushiyaan-Bator-Lo-From-Shaitaan-Hindi-2024-20240223052851-500x500.jpg" alt="image">
+                    <p class="imghead">Khushiyaan Bator lo (... </p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/409/Tera-Kya-Hoga-Lovely-Hindi-2024-20240304160948-500x500.jpg" alt="image">
+                    <p class="imghead">Tera Kya Hoga Lovely</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/238/Crakk-Jeetegaa-Toh-Jiyegaa-Hindi-2024-20240220164723-500x500.jpg" alt="image">
+                    <p class="imghead">Crakk - Jeetegaa To J.. </p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/238/Crakk-Jeetegaa-Toh-Jiyegaa-Hindi-2024-20240220164723-500x500.jpg" alt="image">
+                    <p class="imghead">Laapataa Ladies</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/214/Teri-Baaton-Mein-Aisa-Uljha-Jiya-Hindi-2024-20240205151011-500x500.jpg" alt="image">
+                    <p class="imghead">Teri Batoon Ma Aisa...</p>
+                </div>
+                <div class="boxes"> 
+                    <img class="img" src="https://c.saavncdn.com/207/Kuch-Khattaa-Ho-Jaay-Hindi-2024-20240306191008-500x500.jpg" alt="image">
+                    <p class="imghead">Kuch Khattaa Ho Jaay</p>
+                </div>
+            </div>
+        </div>
+        <div class="religion">
+            <h4 class="songhead">Relegion & Spirituality Podcasts</h4>
+            <div class="boxstart2">
+                <div class="boxes">
+                    <img class="img" src="http://c.sop.saavncdn.com/Shri-Krishna-Amritvani-20211001160841-500x500.jpg" alt="image">
+                    <p class="imghead">Shri Krishna Amritvani</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="http://c.sop.saavncdn.com/Ramayan-Hindi-20230806123927-500x500.jpg" alt="image">
+                    <p class="imghead">Ramayan Hindi</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="http://c.sop.saavncdn.com/Hanuman-Chalisa-Explanation-20221104123422-500x500.jpg" alt="image">
+                    <p class="imghead">Hanuman Chalisa (Ex..</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="http://c.sop.saavncdn.com/Bhagvat-Gita-quotes-Mahabharat-Shri-Krishna-quotes-20230722081111-500x500.jpg" alt="image">
+                    <p class="imghead">Bhagvat Gita Quot...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="http://c.sop.saavncdn.com/Krishna-The-Supreme-Soul-20230131115638-500x500.jpg" alt="image">
+                    <p class="imghead">Krishna - The Supreme...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="http://c.sop.saavncdn.com/Mere-Prabhu-Ram-20240119090542-500x500.jpg" alt="image">
+                    <p class="imghead">Mera Prabhu Ram</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="http://c.sop.saavncdn.com/Shiv-Jyotirlinga-12-Wonderful-Stories-of-12-Jyotirlinga-20231118140128-500x500.jpg" alt="image">
+                    <p class="imghead">शिव ज्योतिर्लिंग की कह...</p>
+                </div>
+            </div>
+        </div>
+        <div class="topalbum">
+            <h4 class="songhead">Top Album - Hindi</h4>
+            <div class="boxstart2">
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/196/ANIMAL-Deluxe-Edition-Album-Hindi-2024-20240129171041-500x500.jpg" alt="image">
+                    <p class="imghead">Animal(Delexe Editi...</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/807/Kabir-Singh-Hindi-2019-20240131131003-500x500.jpg" alt="image">
+                    <p class="imghead">Kabir Singh</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/410/Dil-To-Pagal-Hai-Hindi-1997-20190329145756-500x500.jpg" alt="image">
+                    <p class="imghead">Dil To Pagal Hai</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/367/Kedarnath-Hindi-2019-20190219-500x500.jpg" alt="image">
+                    <p class="imghead">Kedarnath</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/139/Dunki-Hindi-2023-20231220211003-500x500.jpg" alt="image">
+                    <p class="imghead">Dunki</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/221/Rustom-Hindi-2018-20191029174008-500x500.jpg" alt="image">
+                    <p class="imghead">Rustom</p>
+                </div>
+                <div class="boxes">
+                    <img class="img" src="https://c.saavncdn.com/815/Bhediya-Hindi-2023-20230927155213-500x500.jpg" alt="image">
+                    <p class="imghead">Bhediya</p>
+                </div>
+            </div>
+        </div>
+        <div class="foot">
+            <hr>
+        <div class="footer">
+            <div class="cont">
+                <h2 class="fheading">Top Artist</h2>
+                <h3 class="ffheading">Neha Kakkar</h3>
+                <h3 class="ffheading">Arjit singh</h3>
+                <h3 class="ffheading">Badshah</h3>
+                <h3 class="ffheading">Atif Aslam</h3> 
+                <h3 class="ffheading">Justin Bleber</h3>
+                <h3 class="ffheading">Himesh Reshmmiya</h3>
+                <h3 class="ffheading">Lata Mangeshkar</h3>
+                <h3 class="ffheading">Diljit Dosanjh</h3>
+                <h3 class="ffheading">Ed Sheeran</h3> 
+                <h3 class="ffheading">Sherya Goshalal</h3>
+                <h3 class="ffheading">Sanam Puri</h3> 
+                <h3 class="ffheading">Aarman Malik</h3>
+            </div>
+            <div class="cont">
+                <h2 class="fheading">Top Actors</h2>
+                <h3 class="ffheading">Salman Khan</h3>
+                <h3 class="ffheading">Allu Arjun</h3>
+                <h3 class="ffheading">Sunny Leone</h3>
+                <h3 class="ffheading">Amitabh Bacchan</h3> 
+                <h3 class="ffheading">Varun Dhavan</h3><br>
+                <h2 class="fheading">Browse</h2>
+                <h3 class="ffheading">New Releases</h3>
+                <h3 class="ffheading">Featured Palylists</h3>
+                <h3 class="ffheading">Weekly Top Songs</h3>
+                <h3 class="ffheading">Top Artists</h3>
+                <h3 class="ffheading">Top Charts</h3>
+                <h3 class="ffheading">Top Radio</h3>
+            </div>
+            <div class="cont">
+                <h2 class="fheading">DEvotional Songs</h2>
+                <h3 class="ffheading">Krishna Bhajan</h3>
+                <h3 class="ffheading">Mahamrityunjaya Mantra</h3>
+                <h3 class="ffheading">Deva Shree Ganesha</h3>
+                <h3 class="ffheading">Hanuman Chalisa</h3> 
+                <h3 class="ffheading">Gayatri Mantra</h3>
+                <h3 class="ffheading">Mata Ka Bhajan</h3>
+                <h3 class="ffheading">Durga Chalisa</h3>
+                <h3 class="ffheading">Maiya Yashoda</h3>
+                <h3 class="ffheading">Bhakti Geet</h3> 
+            </div>
+            <div class="cont">
+                <h2 class="fheading">Languages</h2>
+                <h3 class="ffheading">Hindi Songs</h3>
+                <h3 class="ffheading">Punjabi Songs</h3>
+                <h3 class="ffheading">Bhojpuri Songs</h3>
+                <h3 class="ffheading">Tamil Songs</h3> 
+                <h3 class="ffheading">Telgue Songs</h3>
+                <h3 class="ffheading">Kannada Songs</h3>
+                <h3 class="ffheading">Gujrati Songs</h3>
+                <h3 class="ffheading">Marathi Songs</h3>
+                <h3 class="ffheading">Odia Songs</h3> 
+                <h3 class="ffheading">Rajasthani Somgs</h3>
+                <h3 class="ffheading">Haryanvi Songs</h3> 
+                <h3 class="ffheading">Assamese Songs</h3>
+                <h3 class="ffheading">Malaylam Songs</h3>
+                <h3 class="ffheading">Bengali Songs</h3>
+            </div>
+            <div class="cont">
+                <h2 class="fheading">Artists</h2>
+                <h3 class="ffheading">Zaeden - Dooriyan</h3>
+                <h3 class="ffheading">Raghav - Suifi</h3>
+                <h3 class="ffheading">SIXK - Dasna</h3>
+                <h3 class="ffheading">Siri - My Jam</h3> 
+                <h3 class="ffheading">Lost Stories, "Mai Nahi Meriya"</h3>
+            </div>
+            <div class="cont">                
+                <h2 class="fheading">Company</h2>
+                <h3 class="ffheading">About Us</h3>
+                <h3 class="ffheading">Culture</h3>
+                <h3 class="ffheading">Blog</h3>
+                <h3 class="ffheading">Jobs</h3> 
+                <h3 class="ffheading">Advertise</h3>
+                <h3 class="ffheading">Terms & Privacy</h3>
+                <h3 class="ffheading">Help And Support</h3> 
+                <h3 class="ffheading">Grievances</h3>
+                <h3 class="ffheading">JioSavaan Artist Insights</h3>
+                <h3 class="ffheading">JioSavaan Your Caste</h3> 
+            </div>
+        </div>
+        </div>
+        <hr>
+        <div class="fmenu">
+        <h1 class="ffmenu">JioSaavn Pro </h1>
+        <h1 class="ffmenu">JioSaavn For iOS </h1>
+        <h1 class="ffmenu">JioSaavn For Android </h1>
+        <h1 class="ffmenu">New Releases</h1>
+    </div>
+        <hr>
+
+        </div>
+        </div>
+    </div>
+</body>
+</html>
